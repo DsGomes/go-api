@@ -1,0 +1,11 @@
+{
+    "api": {
+        "port": "9000"
+    },
+    "database": {
+        "host": "localhost",
+        "user": "",
+        "password": "",
+        "name": "api_todo"
+    }
+}
