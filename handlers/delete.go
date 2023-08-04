@@ -7,6 +7,7 @@ import (
 	"strconv"
 
 	"github.com/dsgomes/rest-api/models"
+	"github.com/go-chi/chi/v5"
 )
 
 func Delete(w http.ResponseWriter, r *http.Request) {
