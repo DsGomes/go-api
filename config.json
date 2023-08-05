@@ -4,8 +4,8 @@
     },
     "database": {
         "host": "localhost",
-        "user": "",
-        "password": "",
+        "user": "user_todo",
+        "password": "1122",
         "name": "api_todo"
     }
 }
