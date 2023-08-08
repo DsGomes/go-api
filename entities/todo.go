@@ -1,7 +1,7 @@
-package models
+package entities
 
 type Todo struct {
-	ID          int64  `json:"id"`
+	Base
 	Title       string `json:"title"`
 	Description string `json:"description"`
 	Done        bool   `json:"done"`

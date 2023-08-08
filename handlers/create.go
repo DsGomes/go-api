@@ -6,11 +6,12 @@ import (
 	"log"
 	"net/http"
 
+	"github.com/dsgomes/rest-api/entities"
 	"github.com/dsgomes/rest-api/models"
 )
 
 func Create(w http.ResponseWriter, r *http.Request) {
-	var todo models.Todo
+	var todo entities.Todo
 	var resp map[string]any
 
 	err := json.NewDecoder(r.Body).Decode(&todo)

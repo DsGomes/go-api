@@ -1,8 +1,11 @@
 package models
 
-import "github.com/dsgomes/rest-api/db"
+import (
+	"github.com/dsgomes/rest-api/db"
+	"github.com/dsgomes/rest-api/entities"
+)
 
-func GetAll() (todos []Todo, err error) {
+func GetAll() (todos []entities.Todo, err error) {
 	conn, err := db.OpenConnection()
 	if err != nil {
 		return
@@ -15,9 +18,16 @@ func GetAll() (todos []Todo, err error) {
 	}
 
 	for rows.Next() {
-		var todo Todo
+		var todo entities.Todo
 
-		err = rows.Scan(&todo.ID, &todo.Title, &todo.Description, &todo.Done)
+		err = rows.Scan(
+			&todo.ID,
+			&todo.Title,
+			&todo.Description,
+			&todo.Done,
+			&todo.CreatedAt,
+			&todo.UpdatedAt,
+		)
 		if err != nil {
 			continue
 		}

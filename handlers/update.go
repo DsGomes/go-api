@@ -6,12 +6,13 @@ import (
 	"net/http"
 	"strconv"
 
+	"github.com/dsgomes/rest-api/entities"
 	"github.com/dsgomes/rest-api/models"
 	"github.com/go-chi/chi/v5"
 )
 
 func Update(w http.ResponseWriter, r *http.Request) {
-	var todo models.Todo
+	var todo entities.Todo
 
 	id, err := strconv.Atoi(chi.URLParam(r, "id"))
 	if err != nil {
