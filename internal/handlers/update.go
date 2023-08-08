@@ -6,11 +6,14 @@ import (
 	"net/http"
 	"strconv"
 
-	"github.com/dsgomes/rest-api/models"
+	"github.com/dsgomes/rest-api/internal/core/domain"
+	"github.com/dsgomes/rest-api/internal/repositories"
 	"github.com/go-chi/chi/v5"
 )
 
-func Delete(w http.ResponseWriter, r *http.Request) {
+func Update(w http.ResponseWriter, r *http.Request) {
+	var todo domain.Todo
+
 	id, err := strconv.Atoi(chi.URLParam(r, "id"))
 	if err != nil {
 		log.Printf("Id parser error: %v", err)
@@ -22,9 +25,20 @@ func Delete(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	rows, err := models.Delete(int64(id))
+	err = json.NewDecoder(r.Body).Decode(&todo)
 	if err != nil {
-		log.Printf("Delete error: %v", err)
+		log.Printf("Decode error: %v", err)
+		http.Error(
+			w,
+			http.StatusText(http.StatusInternalServerError),
+			http.StatusInternalServerError,
+		)
+		return
+	}
+
+	rows, err := repositories.Update(int64(id), todo)
+	if err != nil {
+		log.Printf("Update error: %v", err)
 		http.Error(
 			w,
 			http.StatusText(http.StatusInternalServerError),
@@ -34,12 +48,12 @@ func Delete(w http.ResponseWriter, r *http.Request) {
 	}
 
 	if rows > 1 {
-		log.Printf("Error: deleted %d registers", rows)
+		log.Printf("Error: updated %d registers", rows)
 	}
 
 	resp := map[string]any{
 		"Error":   false,
-		"Message": "Deleted succesfully",
+		"Message": "Updated succesfully",
 	}
 
 	w.Header().Add("Content-Type", "application/json")

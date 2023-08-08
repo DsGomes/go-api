@@ -5,7 +5,7 @@ import (
 	"net/http"
 
 	"github.com/dsgomes/rest-api/configs"
-	"github.com/dsgomes/rest-api/handlers"
+	"github.com/dsgomes/rest-api/internal/handlers"
 	"github.com/go-chi/chi/v5"
 )
 

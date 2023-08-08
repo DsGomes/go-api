@@ -1,11 +1,11 @@
-package models
+package repositories
 
 import (
 	"github.com/dsgomes/rest-api/db"
-	"github.com/dsgomes/rest-api/entities"
+	"github.com/dsgomes/rest-api/internal/core/domain"
 )
 
-func GetAll() (todos []entities.Todo, err error) {
+func GetAll() (todos []domain.Todo, err error) {
 	conn, err := db.OpenConnection()
 	if err != nil {
 		return
@@ -18,7 +18,7 @@ func GetAll() (todos []entities.Todo, err error) {
 	}
 
 	for rows.Next() {
-		var todo entities.Todo
+		var todo domain.Todo
 
 		err = rows.Scan(
 			&todo.ID,

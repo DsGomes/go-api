@@ -5,11 +5,11 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/dsgomes/rest-api/models"
+	"github.com/dsgomes/rest-api/internal/repositories"
 )
 
 func List(w http.ResponseWriter, r *http.Request) {
-	todos, err := models.GetAll()
+	todos, err := repositories.GetAll()
 	if err != nil {
 		log.Printf("Get all error: %v", err)
 	}

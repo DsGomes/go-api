@@ -1,13 +1,13 @@
-package models
+package repositories
 
 import (
 	"time"
 
 	"github.com/dsgomes/rest-api/db"
-	"github.com/dsgomes/rest-api/entities"
+	"github.com/dsgomes/rest-api/internal/core/domain"
 )
 
-func Update(id int64, todo entities.Todo) (int64, error) {
+func Update(id int64, todo domain.Todo) (int64, error) {
 	conn, err := db.OpenConnection()
 	if err != nil {
 		return 0, err

@@ -6,12 +6,12 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/dsgomes/rest-api/entities"
-	"github.com/dsgomes/rest-api/models"
+	"github.com/dsgomes/rest-api/internal/core/domain"
+	"github.com/dsgomes/rest-api/internal/repositories"
 )
 
 func Create(w http.ResponseWriter, r *http.Request) {
-	var todo entities.Todo
+	var todo domain.Todo
 	var resp map[string]any
 
 	err := json.NewDecoder(r.Body).Decode(&todo)
@@ -25,7 +25,7 @@ func Create(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	id, err := models.Insert(todo)
+	id, err := repositories.Insert(todo)
 
 	if err != nil {
 		resp = map[string]any{

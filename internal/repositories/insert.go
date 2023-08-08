@@ -1,11 +1,11 @@
-package models
+package repositories
 
 import (
 	"github.com/dsgomes/rest-api/db"
-	"github.com/dsgomes/rest-api/entities"
+	"github.com/dsgomes/rest-api/internal/core/domain"
 )
 
-func Insert(todo entities.Todo) (id int64, err error) {
+func Insert(todo domain.Todo) (id int64, err error) {
 	conn, err := db.OpenConnection()
 	if err != nil {
 		return
