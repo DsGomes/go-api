@@ -20,7 +20,7 @@ func NewTodoUseCase(todoRepo ports.TodoRepository) ports.TodoUseCase {
 func (t *todoUseCase) GetAll() ([]domain.Todo, error) {
 	todos, err := t.todoRepo.GetAll()
 	if err != nil {
-		log.Printf("Get all error: %v", err)
+		log.Printf("[Todo] Get all error: %v", err)
 	}
 
 	return todos, nil
@@ -29,7 +29,7 @@ func (t *todoUseCase) GetAll() ([]domain.Todo, error) {
 func (t *todoUseCase) Get(id int64) (*domain.Todo, error) {
 	todo, err := t.todoRepo.Get(id)
 	if err != nil {
-		log.Printf("Update error: %v", err)
+		log.Printf("[Todo] Update error: %v", err)
 		return nil, err
 	}
 	return &todo, nil
@@ -49,7 +49,7 @@ func (t *todoUseCase) Insert(todo *domain.Todo) (int64, error) {
 func (t *todoUseCase) Update(id int64, todo *domain.Todo) (int64, error) {
 	rows, err := t.todoRepo.Update(id, todo)
 	if err != nil {
-		log.Printf("Update error: %v", err)
+		log.Printf("[Todo] Update error: %v", err)
 		return 0, err
 	}
 
@@ -59,7 +59,7 @@ func (t *todoUseCase) Update(id int64, todo *domain.Todo) (int64, error) {
 func (t *todoUseCase) Delete(id int64) (int64, error) {
 	rows, err := t.todoRepo.Delete(int64(id))
 	if err != nil {
-		log.Printf("Delete error: %v", err)
+		log.Printf("[Todo] Delete error: %v", err)
 		return 0, err
 	}
 
