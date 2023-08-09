@@ -11,7 +11,7 @@ import (
 )
 
 func Create(w http.ResponseWriter, r *http.Request) {
-	var todo domain.Todo
+	var todo *domain.Todo
 	var resp map[string]any
 
 	err := json.NewDecoder(r.Body).Decode(&todo)
@@ -25,7 +25,8 @@ func Create(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	id, err := repositories.Insert(todo)
+	repository := repositories.NewTodoPostgresRepository()
+	id, err := repository.Insert(todo)
 
 	if err != nil {
 		resp = map[string]any{

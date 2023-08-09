@@ -22,7 +22,8 @@ func Delete(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	rows, err := repositories.Delete(int64(id))
+	repository := repositories.NewTodoPostgresRepository()
+	rows, err := repository.Delete(int64(id))
 	if err != nil {
 		log.Printf("Delete error: %v", err)
 		http.Error(

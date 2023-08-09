@@ -12,7 +12,7 @@ import (
 )
 
 func Update(w http.ResponseWriter, r *http.Request) {
-	var todo domain.Todo
+	var todo *domain.Todo
 
 	id, err := strconv.Atoi(chi.URLParam(r, "id"))
 	if err != nil {
@@ -36,7 +36,8 @@ func Update(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	rows, err := repositories.Update(int64(id), todo)
+	repository := repositories.NewTodoPostgresRepository()
+	rows, err := repository.Update(int64(id), todo)
 	if err != nil {
 		log.Printf("Update error: %v", err)
 		http.Error(

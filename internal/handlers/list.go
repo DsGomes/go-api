@@ -9,7 +9,8 @@ import (
 )
 
 func List(w http.ResponseWriter, r *http.Request) {
-	todos, err := repositories.GetAll()
+	repository := repositories.NewTodoPostgresRepository()
+	todos, err := repository.GetAll()
 	if err != nil {
 		log.Printf("Get all error: %v", err)
 	}

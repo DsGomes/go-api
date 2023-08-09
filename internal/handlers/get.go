@@ -22,7 +22,8 @@ func Get(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	todo, err := repositories.Get(int64(id))
+	repository := repositories.NewTodoPostgresRepository()
+	todo, err := repository.Get(int64(id))
 	if err != nil {
 		log.Printf("Update error: %v", err)
 		http.Error(
