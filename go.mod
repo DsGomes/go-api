@@ -3,9 +3,12 @@ module github.com/dsgomes/rest-api
 go 1.20
 
 require (
+	github.com/google/uuid v1.3.0
 	github.com/lib/pq v1.10.9
 	github.com/spf13/viper v1.16.0
 )
+
+require gopkg.in/check.v1 v1.0.0-20201130134442-10cb98267c6c // indirect
 
 require (
 	github.com/fsnotify/fsnotify v1.6.0 // indirect

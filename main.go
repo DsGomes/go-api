@@ -7,7 +7,8 @@ import (
 	"github.com/dsgomes/rest-api/configs"
 	"github.com/dsgomes/rest-api/internal/core/usecases"
 	"github.com/dsgomes/rest-api/internal/handlers"
-	"github.com/dsgomes/rest-api/internal/repositories"
+	"github.com/dsgomes/rest-api/internal/infra/db"
+	"github.com/dsgomes/rest-api/internal/infra/repositories"
 	"github.com/go-chi/chi/v5"
 )
 
@@ -17,7 +18,8 @@ func main() {
 		panic(err)
 	}
 
-	repository := repositories.NewTodoPostgresRepository()
+	database := db.NewPostgres()
+	repository := repositories.NewTodoPostgresRepository(database)
 	useCase := usecases.NewTodoUseCase(repository)
 	handler := handlers.NewTodoHandler(useCase)
 

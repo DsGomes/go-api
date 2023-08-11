@@ -8,7 +8,13 @@ import (
 	_ "github.com/lib/pq"
 )
 
-func OpenConnection() (*sql.DB, error) {
+type database struct{}
+
+func NewPostgres() Database {
+	return &database{}
+}
+
+func (d *database) OpenConnection() (*sql.DB, error) {
 	conf := configs.GetDB()
 
 	sc := fmt.Sprintf(
