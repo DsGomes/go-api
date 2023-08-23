@@ -14,6 +14,10 @@ Run `./script/create_api_db.sql` in your database management to create your data
 
 *If you have problems when try stop docker-compose services you can test the command `sudo aa-remove-unknown`
 
+Then you can run the project:
+
+`go run main.go`
+
 ### RUNNING TESTS
 
 You can run all tests using the following command on CLI:

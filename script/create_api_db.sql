@@ -1,5 +1,6 @@
 CREATE DATABASE api_todo;
 
+-- go to api_todo database and run table creation
 CREATE TABLE todos (
     id serial primary key, 
     title varchar, 
