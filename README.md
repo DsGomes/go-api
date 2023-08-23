@@ -29,14 +29,20 @@ If you want to see more informations about:
 
 ### FOLDER STRUCTURE
 
-|--configs 
-|--internal
-|-----core
-|--------domain
-|--------ports
-|--------usecases
-|-----handlers
-|-----infra
-|--script
-|--tests
-|-----unit
+```bash
+├── configs
+├── internal
+│   ├── core
+│   │   ├── domain
+│   │   ├── ports
+│   │   └── usecases
+│   ├── handlers
+│   └── infra
+│       ├── db
+│       └── repositories
+├── script
+└── tests
+    └── unit
+        ├── mocks
+        └── usecases
+```
