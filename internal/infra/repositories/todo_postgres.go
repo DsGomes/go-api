@@ -52,7 +52,7 @@ func (t *todoPostgresRepository) GetAll() (todos []domain.Todo, err error) {
 	return
 }
 
-func (t *todoPostgresRepository) Get(id int64) (todo domain.Todo, err error) {
+func (t *todoPostgresRepository) Get(id string) (todo domain.Todo, err error) {
 	conn, err := t.database.OpenConnection()
 	if err != nil {
 		return
@@ -87,7 +87,7 @@ func (t *todoPostgresRepository) Insert(todo *domain.Todo) (id int64, err error)
 	return
 }
 
-func (t *todoPostgresRepository) Update(id int64, todo *domain.Todo) (int64, error) {
+func (t *todoPostgresRepository) Update(id string, todo *domain.Todo) (int64, error) {
 	conn, err := t.database.OpenConnection()
 	if err != nil {
 		return 0, err
@@ -104,7 +104,7 @@ func (t *todoPostgresRepository) Update(id int64, todo *domain.Todo) (int64, err
 	return res.RowsAffected()
 }
 
-func (t *todoPostgresRepository) Delete(id int64) (int64, error) {
+func (t *todoPostgresRepository) Delete(id string) (int64, error) {
 	conn, err := t.database.OpenConnection()
 	if err != nil {
 		return 0, err

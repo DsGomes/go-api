@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"log"
 	"net/http"
-	"strconv"
 
 	"github.com/dsgomes/rest-api/internal/core/domain"
 	"github.com/dsgomes/rest-api/internal/core/ports"
@@ -38,18 +37,9 @@ func (t *TodoHandler) List(w http.ResponseWriter, r *http.Request) {
 }
 
 func (t *TodoHandler) Get(w http.ResponseWriter, r *http.Request) {
-	id, err := strconv.Atoi(chi.URLParam(r, "id"))
-	if err != nil {
-		log.Printf("[Todo] Id parser error: %v", err)
-		http.Error(
-			w,
-			http.StatusText(http.StatusInternalServerError),
-			http.StatusInternalServerError,
-		)
-		return
-	}
+	id := chi.URLParam(r, "id")
 
-	todo, err := t.todoUseCase.Get(int64(id))
+	todo, err := t.todoUseCase.Get(id)
 	if err != nil {
 		http.Error(
 			w,
@@ -99,18 +89,9 @@ func (t *TodoHandler) Create(w http.ResponseWriter, r *http.Request) {
 func (t *TodoHandler) Update(w http.ResponseWriter, r *http.Request) {
 	var todo *domain.Todo
 
-	id, err := strconv.Atoi(chi.URLParam(r, "id"))
-	if err != nil {
-		log.Printf("[Todo] Id parser error: %v", err)
-		http.Error(
-			w,
-			http.StatusText(http.StatusInternalServerError),
-			http.StatusInternalServerError,
-		)
-		return
-	}
+	id := chi.URLParam(r, "id")
 
-	err = json.NewDecoder(r.Body).Decode(&todo)
+	err := json.NewDecoder(r.Body).Decode(&todo)
 	if err != nil {
 		log.Printf("[Todo] Decode error: %v", err)
 		http.Error(
@@ -121,7 +102,7 @@ func (t *TodoHandler) Update(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	rows, err := t.todoUseCase.Update(int64(id), todo)
+	rows, err := t.todoUseCase.Update(string(id), todo)
 	if err != nil {
 		http.Error(
 			w,
@@ -145,18 +126,9 @@ func (t *TodoHandler) Update(w http.ResponseWriter, r *http.Request) {
 }
 
 func (t *TodoHandler) Delete(w http.ResponseWriter, r *http.Request) {
-	id, err := strconv.Atoi(chi.URLParam(r, "id"))
-	if err != nil {
-		log.Printf("Id parser error: %v", err)
-		http.Error(
-			w,
-			http.StatusText(http.StatusInternalServerError),
-			http.StatusInternalServerError,
-		)
-		return
-	}
+	id := chi.URLParam(r, "id")
 
-	rows, err := t.todoUseCase.Delete(int64(id))
+	rows, err := t.todoUseCase.Delete(id)
 	if err != nil {
 		http.Error(
 			w,
