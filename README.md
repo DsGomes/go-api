@@ -13,3 +13,11 @@ Now you can access in browser a database management called **Adminer**:
 Run `./script/create_api_db.sql` in your database management to create your database and api_todo table.
 
 *If you have problems when try stop docker-compose services you can test the command `sudo aa-remove-unknown`
+
+### RUNNING TESTS
+
+You can run all tests using the following command on CLI:
+`go test ./tests/...`
+
+If you want to see more informations about:
+`go test -v ./tests/...`
