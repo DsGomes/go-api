@@ -25,3 +25,18 @@ You can run all tests using the following command on CLI:
 
 If you want to see more informations about:
 `go test -v ./tests/...`
+
+
+### FOLDER STRUCTURE
+
+|--configs 
+|--internal
+|-----core
+|--------domain
+|--------ports
+|--------usecases
+|-----handlers
+|-----infra
+|--script
+|--tests
+|-----unit
