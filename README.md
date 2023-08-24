@@ -7,8 +7,8 @@ Project implementing a REST API using GO lang.
 Up database:
 `docker-compose up -d`
 
-Now you can access in browser a database management called **Adminer**:
-> http://localhost:8080
+Now you can access in browser a database management called **PgAdmin**:
+> http://localhost:54321
 
 Run `./script/create_api_db.sql` in your database management to create your database and api_todo table.
 
