@@ -1,4 +1,4 @@
-### Rest API
+### Rest API Golang
 
 Project implementing a REST API using GO lang.
 
