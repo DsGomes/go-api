@@ -1,7 +1,9 @@
 package db
 
-import "database/sql"
+import (
+	"gorm.io/gorm"
+)
 
 type Database interface {
-	OpenConnection() (*sql.DB, error)
+	OpenConnection() (*gorm.DB, error)
 }

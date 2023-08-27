@@ -35,13 +35,13 @@ func (t *todoUseCase) Get(id string) (*domain.Todo, error) {
 	return &todo, nil
 }
 
-func (t *todoUseCase) Insert(todo *domain.Todo) (int64, error) {
+func (t *todoUseCase) Insert(todo *domain.Todo) (string, error) {
 	entity := domain.NewTodo(todo.Title, todo.Description, todo.Done)
 	id, err := t.todoRepo.Insert(entity)
 
 	if err != nil {
 		log.Printf("[Todo] Insert error: %v", err)
-		return 0, err
+		return "", err
 	}
 
 	return id, nil

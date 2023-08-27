@@ -1,11 +1,18 @@
 package db
 
 import (
-	"database/sql"
 	"fmt"
+	"log"
 
 	"github.com/dsgomes/rest-api/configs"
 	_ "github.com/lib/pq"
+	"gorm.io/driver/postgres"
+	"gorm.io/gorm"
+)
+
+var (
+	DB  *gorm.DB
+	err error
 )
 
 type database struct{}
@@ -14,20 +21,16 @@ func NewPostgres() Database {
 	return &database{}
 }
 
-func (d *database) OpenConnection() (*sql.DB, error) {
+func (d *database) OpenConnection() (*gorm.DB, error) {
 	conf := configs.GetDB()
 
-	sc := fmt.Sprintf(
-		"host=%s port=%s user=%s password=%s dbname=%s sslmode=disable",
-		conf.Host, conf.Port, conf.User, conf.Password, conf.Database,
-	)
+	connectionString := fmt.Sprintf("host=%s user=%s password=%s dbname=%s port=%s sslmode=disable",
+		conf.Host, conf.User, conf.Password, conf.Database, conf.Port)
 
-	conn, err := sql.Open("postgres", sc)
+	DB, err = gorm.Open(postgres.Open(connectionString))
 	if err != nil {
-		panic(err)
+		log.Panic("Error connecting to the database")
 	}
 
-	err = conn.Ping()
-
-	return conn, err
+	return DB, err
 }

@@ -19,9 +19,9 @@ func (m *MockTodoRepository) Get(id string) (domain.Todo, error) {
 	return args.Get(0).(domain.Todo), args.Error(1)
 }
 
-func (m *MockTodoRepository) Insert(todo *domain.Todo) (int64, error) {
+func (m *MockTodoRepository) Insert(todo *domain.Todo) (string, error) {
 	args := m.Called(todo)
-	return args.Get(0).(int64), args.Error(1)
+	return args.Get(0).(string), args.Error(1)
 }
 
 func (m *MockTodoRepository) Update(id string, todo *domain.Todo) (int64, error) {
