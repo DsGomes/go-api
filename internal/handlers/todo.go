@@ -49,7 +49,7 @@ func (t *TodoHandler) Get(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	w.Header().Add("Content-Type", "app  lication/json")
+	w.Header().Add("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(todo)
 }
 
