@@ -5,6 +5,7 @@ import (
 	"log"
 
 	"github.com/dsgomes/rest-api/configs"
+	"github.com/dsgomes/rest-api/internal/core/domain"
 	_ "github.com/lib/pq"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
@@ -31,6 +32,7 @@ func (d *database) OpenConnection() (*gorm.DB, error) {
 	if err != nil {
 		log.Panic("Error connecting to the database")
 	}
+	DB.AutoMigrate(&domain.Todo{})
 
 	return DB, err
 }
