@@ -78,7 +78,7 @@ func (t *TodoHandler) Create(w http.ResponseWriter, r *http.Request) {
 	} else {
 		resp = map[string]any{
 			"Error":   false,
-			"Message": fmt.Sprintf("Todo succesfully created: %d", id),
+			"Message": fmt.Sprintf("Todo succesfully created: %s", id),
 		}
 	}
 
